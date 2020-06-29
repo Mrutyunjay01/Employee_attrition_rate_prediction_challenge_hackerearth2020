@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 
 def load_df(filepath):
@@ -12,3 +13,11 @@ def load_df(filepath):
     pass
 
 
+def replace_categorical(df):
+    """ Apply label encoding instead."""
+    for col in df.columns:
+        if df[col].dtype == 'object':
+            df[col] = LabelEncoder().fit_transform(df[col])
+
+    return df
+    pass
